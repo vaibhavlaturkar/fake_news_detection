@@ -10,6 +10,22 @@ The dataset originally pertains to a multi-class classification problem but has 
 
 The data has been preprocessed to handle missing values, duplicates, and irrelevant data points. Categorical features have been transformed using embedding layers to capture more nuanced information than traditional encoding methods. Text features have been handled using transfer learning embeddings from pre-trained models to leverage semantic information contained in the news content.
 
+## Feature Engineering
+
+In addition to preprocessing steps, the following features were engineered to capture more information and provide the model with a richer set of inputs:
+
+- `month`: Extracted from the publication date, representing the month in which the article was published, to capture any temporal patterns in the news data.
+- `title_length`: The number of characters in the news title, which may signal the complexity or the nature of the news.
+- `title_polarity`: A sentiment analysis metric indicating the polarity of the sentiment expressed in the news title, ranging from negative to positive.
+- `title_subjectivity`: A sentiment analysis metric indicating the subjectivity of the news title, ranging from objective facts to subjective opinions.
+- `lexical_diversity`: Measures the diversity of words used in the content of the news, which can be an indicator of the richness of language and possibly the credibility of the content.
+- `source_domain`: The domain from which the news was sourced, to understand the distribution and impact of different news outlets.
+- `domain_is_credible`: A binary indicator representing whether the domain is considered credible or not, based on external assessments.
+- `domain_fake_ratio`: A ratio representing the frequency of fake news published by the domain, which could be a signal of the trustworthiness of the source.
+
+These features were incorporated into the model to enhance its predictive power and provide deeper insights into the characteristics of fake versus true news articles.
+
+
 ## Neural Network Model
 
 The neural network model is constructed using TensorFlow and Keras libraries. It is designed with separate input layers for categorical, numerical, and text data, which are then combined into a unified architecture. The model uses embedding layers for the categorical features and leverages pre-trained BERT embeddings for the text features.
